@@ -1,47 +1,46 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
-</script>
-
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
+  <v-app class="app">
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
+    <!--    <v-app-bar-->
+    <!--      color="primary"-->
+    <!--      density="compact">-->
+    <!--      <v-app-bar-title>Application recherche films</v-app-bar-title>-->
+    <!--      <v-btn to="/PharmaPage">PharmaPage</v-btn>-->
+    <!--    </v-app-bar>-->
 
-  <main>
-    <TheWelcome />
-  </main>
+    <v-main>
+      <v-container class="page">
+        <PharmaPage/>
+        <!--        <RouterView/>-->
+      </v-container>
+    </v-main>
+
+  </v-app>
 </template>
 
+
+
 <style scoped>
-header {
-  line-height: 1.5;
+
+.page {
+  background-image: url('assets/armoire.png');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+
+
+}
+.page {
+  padding-left: 25%;
+  padding-right: 25%;
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
+.page {
+  min-height: 100vh;
+  text-align: center;
 }
 </style>
+<script setup>
+import PharmaPage from "@/pages/PharmaPage.vue";
+//import PharmaPage from "@/pages/PharmaPage.vue";
+</script>
