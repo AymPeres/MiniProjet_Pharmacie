@@ -25,8 +25,8 @@ defineProps(["produit", "handlerAdd", "handlerRemove", "handlerDelete"]);
             <v-col class="pa-0" cols="12">
               {{ produit.qte }} - {{ produit.denomination }}
               <br>
-              <v-btn @click="handlerRemove(produit)" size="x-small">-</v-btn>
-              <v-btn @click="handlerAdd(produit)" size="x-small">+</v-btn>
+              <v-btn @click="()=>handlerRemove(produit)" size="x-small">-</v-btn>
+              <v-btn @click="()=>handlerAdd(produit)" size="x-small">+</v-btn>
             </v-col>
           </v-row>
         </v-container>

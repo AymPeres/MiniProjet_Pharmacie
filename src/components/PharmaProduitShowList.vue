@@ -16,7 +16,11 @@ function fetchProduits() {
       })
       .then((dataJson) => {
         console.log("Données reçues de l'API:", dataJson); // à supprimer
-        listeProduits.splice(0, listeProduits.length, ...dataJson);
+        listeProduits.splice(0, listeProduits.length);
+        for (let produit of dataJson) {
+          console.log("produit: ",produit)
+          listeProduits.push(new Produit(produit.id, produit.denomination, produit.qte, produit.formepharmaceutique, produit.photo)); //
+        }
 
         checkIfSomeItemsAreAtZero();
       })
@@ -81,7 +85,7 @@ function handlerUpdateSearchQuery(newSearchQuery) {
 }
 
 function handlerAdd(produit) {
-  console.log(produit)
+  console.log("toto")
   fetchForPostPut(url, produit.addQtyOption);
 }
 

@@ -29,7 +29,7 @@ export default class Produit {
         return {
             method: method,
             headers: myHeaders,
-            body: JSON.stringify({id: this.id, denomination: this._denomination, qte: qtyToChange, photo: this.photo, formepharmaceutique: this.formepharmaceutique}),
+            body: JSON.stringify({id: this.id, denomination: this.denomination, qte: qtyToChange, photo: this.photo, formepharmaceutique: this.formepharmaceutique}),
         };
     }
 
