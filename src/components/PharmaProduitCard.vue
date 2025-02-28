@@ -1,7 +1,5 @@
 <script setup>
-
-defineProps(["produit", "handlerAdd", "handlerRemove", "handlerDelete"]);
-
+defineProps(["produit", "handlerAdd", "handlerRemove", "handlerDelete", "handlerEdit"]);
 </script>
 
 <template>
@@ -9,34 +7,33 @@ defineProps(["produit", "handlerAdd", "handlerRemove", "handlerDelete"]);
     <v-card class="card">
       <v-img class="image"
              :src="`https://apipharmacie.pecatte.fr/images/${produit.photo}`"
-             :alt="`${produit.denomination}` + ' image'"
-             :title="`${produit.denomination}`"
+             :alt="`${produit.denomination} image`"
+             :title="`${produit.denomination}`">
+      </v-img>
 
-      ></v-img>
+      <v-card-text v-if="produit.photo === ''" class="flex-fill align-content-center justify-content-center">
+        {{ produit.denomination }}
+      </v-card-text>
 
-        <v-card-text v-if="produit.photo === ''" class="flex-fill align-content-center justify-content-center">
-          {{ produit.denomination }}
-        </v-card-text>
-        <v-btn @click="handlerDelete(produit.id)" size="small" class="top-right px-0" icon="mdi-delete"
-               density="comfortable"></v-btn>
+      <!-- Bouton Supprimer existant -->
+      <v-btn @click="handlerDelete(produit.id)" size="small" class="top-right px-0" icon="mdi-delete" density="comfortable"></v-btn>
+
+      <!-- Nouveau bouton Modifier -->
+      <v-btn @click="handlerEdit(produit)" size="small" class="top-right" icon="mdi-pencil" density="comfortable" style="top: 30px;"></v-btn>
+
       <v-card-title class="card-title">
         <v-container>
           <v-row>
             <v-col class="pa-0" cols="12">
               {{ produit.qte }} - {{ produit.denomination }}
               <br>
-              <v-btn @click="()=>handlerRemove(produit)" size="x-small">-</v-btn>
-              <v-btn @click="()=>handlerAdd(produit)" size="x-small">+</v-btn>
+              <v-btn @click="() => handlerRemove(produit)" size="x-small">-</v-btn>
+              <v-btn @click="() => handlerAdd(produit)" size="x-small">+</v-btn>
             </v-col>
           </v-row>
         </v-container>
       </v-card-title>
     </v-card>
-
-
-
-
-
   </v-col>
 </template>
 
@@ -54,25 +51,11 @@ defineProps(["produit", "handlerAdd", "handlerRemove", "handlerDelete"]);
   min-width: 40px;
 }
 
-
 .top-right {
   position: absolute;
   top: 0;
   right: 0;
   background-color: rgba(66, 250, 95, 0.65);
-
-}
-
-.img {
-  width: 1000px;
-}
-
-.centered {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: math;
 }
 
 .image {
