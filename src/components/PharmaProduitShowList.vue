@@ -15,25 +15,25 @@ const selectedProduitToEdit = ref(null);
 
 function fetchProduits() {
   fetch(url + "?search=" + searchQuery)
-      .then((response) => response.json())
-      .then((dataJson) => {
+      .then(response => response.json())
+      .then(dataJson => {
         console.log("Données reçues de l'API:", dataJson);
-        listeProduits.splice(0, listeProduits.length);
-        for (let produit of dataJson) {
-          listeProduits.push(new Produit(
-              produit.id,
-              produit.denomination,
-              produit.qte,
-              produit.photo,
-              produit.formepharmaceutique
-          ));
-        }
+        // Réinitialise le tableau
+        listeProduits.splice(0, listeProduits.length, ...dataJson.map(produit => new Produit(
+            produit.id,
+            produit.denomination,
+            produit.qte,
+            produit.photo,
+            produit.formepharmaceutique
+        )));
+
         checkIfSomeItemsAreAtZero();
       })
-      .catch((error) => {
+      .catch(error => {
         console.log(error);
       });
 }
+
 
 function handlerAddProduits(produit) {
   fetchForPostPut(url, produit.postOptions);
